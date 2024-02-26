@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "master-conceptlogic-mlm"
+version = "0.1.0"
+description = ""
+authors = ["Patrick Richter <gratach@gmx.de>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+dep1 = {path = "../python-conceptlogic"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+meinscri = "master-conceptlogic-mlm.test:test"
