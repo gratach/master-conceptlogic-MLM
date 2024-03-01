@@ -1,5 +1,5 @@
 from io import StringIO
-from conceptLogic import StandardLogic, NumberConcept, StringConcept, SetConcept, DirectAbstraction, ConnectionConcept, ConnectionsConcept, isInstanceOf, writeTriples, readTriples, getConceptName, getConceptClass
+from conceptLogic import StandardLogic, NumberConcept, StringConcept, SetConcept, DirectAbstraction, ConnectionConcept, ConnectionsConcept, isInstanceOf, writeTriples, readTriples, getConceptName, getConceptClass, ReferencefAbstractionNamespace
 
 def test():
     sl = StandardLogic([NumberConcept, StringConcept])
@@ -14,6 +14,8 @@ def test():
     da1 = DirectAbstraction(nr, sl)
     cc1 = ConnectionConcept((nr, nr, None), sl)
     csc1 = ConnectionsConcept([(None, isInstanceOf, nr)], sl)
+    ran = ReferencefAbstractionNamespace("testNamespace", sl)
+    ra1 = ran("test1")
     concepts.update(sl.getLoadedConcepts())
 
 
