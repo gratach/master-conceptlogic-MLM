@@ -60,8 +60,6 @@ class SourceBasedClaim(metaclass=CodedConceptClass):
         if not hasConceptClass(authority, Autority):
             raise semanticConnectionsNotValid()
         source = readDistinctConnection(sourceOfSourceBasedClaim, semanticConnections, conceptLogic)
-        if not hasConceptClass(source, StringConcept):
-            raise semanticConnectionsNotValid()
         assertion = readDistinctConnection(claimesSourceBased, semanticConnections, conceptLogic)
         #if not hasConceptClass(assertion, TripleTrueAssertion):
         #    raise semanticConnectionsNotValid()
@@ -77,6 +75,8 @@ class SourceBasedClaim(metaclass=CodedConceptClass):
 
 # Create StandardLogic
 sl = StandardLogic()
+
+#arxp = ArxivPaper.getConcept(sl)
 
 
 # Create referenced abstractions
@@ -126,11 +126,11 @@ Format of the source strings:
 def get_arxiv_id(source_string):
     return source_string.split("arxiv.org/abs/")[1].split(" Table:")[0]
 arxiv_ids = set([get_arxiv_id(source_string) for source_string in source_strings])
-
 papers = []
 
 for arxiv_id in arxiv_ids:
     papers.append(ArxivPaper(arxiv_id, sl))
+
 
 authority = Autority(MLMPrefix + b"R30ExtractionAuthority", sl)
 
@@ -170,9 +170,17 @@ for modelName, parameters in data.items():
                 arxivPaper = ArxivPaper(arxiv_id, sl)
                 paramClaim = SourceBasedClaim((paramTripleTrueAssertion, authority, arxivPaper), sl)
                 claimes.append(paramClaim)
-
+""""""
 # Write the concepts to a file and read them back in
 
 concepts = sl.getLoadedConcepts()
 with open(directory_path / "R30.ttl", "w") as s:
         writeTriples(concepts, s)
+with open(directory_path / "R30.ttl", "r") as s:
+        rt1 = readTriples(s, sl)
+with open(directory_path / "R30.ttl", "r") as s:
+        rt2 = readTriples(s, sl)
+        print(all([c in rt1.values() for c in concepts]))
+        for c in concepts.difference(set(rt1.values())):
+            print(getConceptName(c))
+        print(set(rt1) == set(rt2))
