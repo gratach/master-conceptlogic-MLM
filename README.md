@@ -12,3 +12,5 @@ git clone git@github.com:gratach/python-conceptlogic.git # into the same parent 
 git clone git@github.com:gratach/master-thesis.git
 pip install ./master-conceptlogic-MLM
 ```
+
+Database files are hosted seperately in [https://github.com/gratach/master-database-files](https://github.com/gratach/master-database-files)

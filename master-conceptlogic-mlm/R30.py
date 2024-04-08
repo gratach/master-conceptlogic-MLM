@@ -1,14 +1,14 @@
-import yaml
 from io import StringIO
-from conceptLogic import StandardLogic, isInstanceOf, StringConcept, ConstructedAbstraction, ReferencedAbstraction, CodedConceptClass, newIdentityConcept, NumberConcept, TripleTrueAssertion, writeTriples, readTriples, getConceptName
-from conceptLogic import writeDistinctConnection, StringConcept, readDistinctConnection, IdentityConcept, semanticConnectionsNotValid, hasConceptClass
+from conceptlogic import StandardLogic, isInstanceOf, StringConcept, ConstructedAbstraction, ReferencedAbstraction, CodedConceptClass, newIdentityConcept, NumberConcept, TripleTrueAssertion, writeTriples, readTriples, getConceptName
+from conceptlogic import writeDistinctConnection, StringConcept, readDistinctConnection, IdentityConcept, semanticConnectionsNotValid, hasConceptClass
 from pathlib import Path
+import yaml
 
 directory_path = Path(__file__).parent
 root_path = (directory_path / ".." / "..").resolve()
-referenced_R30_value_path = root_path / "master_thesis" / "semantic_paper" / "data" / "collect_R30_values" / "referenced_papers" / "parameters.yaml"
+referenced_R30_value_path = root_path / "master-thesis" / "semantic_paper" / "data" / "collect_R30_values" / "referenced_papers" / "parameters.yaml"
 
-MLMPrefix = b"masterThesis.MLM."
+MLMPrefix = b"master.MLM."
 
 # Create constructed concept definitions
 
